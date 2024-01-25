@@ -85,34 +85,7 @@ env GOOS=linux GOARCH=arm GOARM=5 go build -o ./output/my_raspi_bink raspi_blink
 
   <span class="pl-s1">robot</span>.<span class="pl-en">Start</span>()
 }</pre><div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="package main
-
-import (
-  &quot;time&quot;
-
-  &quot;gobot.io/x/gobot/v2&quot;
-  &quot;gobot.io/x/gobot/v2/drivers/gpio&quot;
-  &quot;gobot.io/x/gobot/v2/platforms/firmata&quot;
-)
-
-func main() {
-  firmataAdaptor := firmata.NewAdaptor(&quot;/dev/ttyACM0&quot;)
-  led := gpio.NewLedDriver(firmataAdaptor, &quot;13&quot;)
-
-  work := func() {
-    gobot.Every(1*time.Second, func() {
-      led.Toggle()
-    })
-  }
-
-  robot := gobot.NewRobot(&quot;bot&quot;,
-    []gobot.Connection{firmataAdaptor},
-    []gobot.Device{led},
-    work,
-  )
-
-  robot.Start()
-}" tabindex="0" role="button">
+   
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
     <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
 </svg>
@@ -150,34 +123,6 @@ func main() {
 
   <span class="pl-s1">robot</span>.<span class="pl-en">Start</span>()
 }</pre><div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="package main
-
-import (
-  &quot;fmt&quot;
-  &quot;time&quot;
-
-  &quot;gobot.io/x/gobot/v2&quot;
-  &quot;gobot.io/x/gobot/v2/platforms/sphero&quot;
-)
-
-func main() {
-  adaptor := sphero.NewAdaptor(&quot;/dev/rfcomm0&quot;)
-  driver := sphero.NewSpheroDriver(adaptor)
-
-  work := func() {
-    gobot.Every(3*time.Second, func() {
-      driver.Roll(30, uint16(gobot.Rand(360)))
-    })
-  }
-
-  robot := gobot.NewRobot(&quot;sphero&quot;,
-    []gobot.Connection{adaptor},
-    []gobot.Device{driver},
-    work,
-  )
-
-  robot.Start()
-}" tabindex="0" role="button">
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
     <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
 </svg>
@@ -208,26 +153,7 @@ func main() {
     <span class="pl-s1">time</span>.<span class="pl-en">Sleep</span>(<span class="pl-c1">1000</span> <span class="pl-c1">*</span> <span class="pl-s1">time</span>.<span class="pl-c1">Millisecond</span>)
   }
 }</pre><div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="package main
-
-import (
-  &quot;gobot.io/x/gobot/v2/drivers/gpio&quot;
-  &quot;gobot.io/x/gobot/v2/platforms/intel-iot/edison&quot;
-  &quot;time&quot;
-)
-
-func main() {
-  e := edison.NewAdaptor()
-  e.Connect()
-
-  led := gpio.NewLedDriver(e, &quot;13&quot;)
-  led.Start()
-
-  for {
-    led.Toggle()
-    time.Sleep(1000 * time.Millisecond)
-  }
-}" tabindex="0" role="button">
+    
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
     <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
 </svg>
