@@ -224,48 +224,6 @@ env GOOS=linux GOARCH=arm GOARM=5 go build -o ./output/my_raspi_bink raspi_blink
 
   <span class="pl-s1">master</span>.<span class="pl-en">Start</span>()
 }</pre><div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="package main
-
-import (
-  &quot;fmt&quot;
-  &quot;time&quot;
-
-  &quot;gobot.io/x/gobot/v2&quot;
-  &quot;gobot.io/x/gobot/v2/api&quot;
-  &quot;gobot.io/x/gobot/v2/platforms/sphero&quot;
-)
-
-func NewSwarmBot(port string) *gobot.Robot {
-  spheroAdaptor := sphero.NewAdaptor(port)
-  spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
-  spheroDriver.SetName(&quot;Sphero&quot; + port)
-
-  work := func() {
-    spheroDriver.Stop()
-
-    spheroDriver.On(sphero.Collision, func(data interface{}) {
-      fmt.Println(&quot;Collision Detected!&quot;)
-    })
-
-    gobot.Every(1*time.Second, func() {
-      spheroDriver.Roll(100, uint16(gobot.Rand(360)))
-    })
-    gobot.Every(3*time.Second, func() {
-      spheroDriver.SetRGB(uint8(gobot.Rand(255)),
-        uint8(gobot.Rand(255)),
-        uint8(gobot.Rand(255)),
-      )
-    })
-  }
-
-  robot := gobot.NewRobot(&quot;sphero&quot;,
-    []gobot.Connection{spheroAdaptor},
-    []gobot.Device{spheroDriver},
-    work,
-  )
-
-  return robot
-}
 
 
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
